@@ -40,6 +40,7 @@ public class PrestadorBean implements Serializable {
 	private int cd;
 	private ServicoBO servicoBO;
 	private int servicoSelecionado;
+	private String enderecoExtenso;
 	
 	
 
@@ -56,7 +57,7 @@ public class PrestadorBean implements Serializable {
 		prestador.setCodigoLogradouro(cd);
 		endereco = new Endereco();
 		servicoBO = new ServicoBO();
-		
+		this.setEnderecoExtenso(endereco.getTipoLogradouro()+" "+endereco.getLogradouro()+" "+endereco.getBairro()+" "+endereco.getSigla());
 
 	}
 	
@@ -106,8 +107,6 @@ public class PrestadorBean implements Serializable {
 
 	public void buscar() {
 		
-		
-		
 		try {
 			String tp = "";
 			String log= "";
@@ -126,7 +125,7 @@ public class PrestadorBean implements Serializable {
 			sigla = (String) query2.getOutputParameterValue("P_NM_SIGLA");
 			cd = (Integer) query2.getOutputParameterValue("P_CD_LOG");
 			
-			
+			this.setEnderecoExtenso(tp+" "+log+" "+bairro);
 			endereco.setTipoLogradouro(tp);
 			endereco.setLogradouro(log);
 			endereco.setBairro(bairro);
@@ -171,6 +170,14 @@ public class PrestadorBean implements Serializable {
 
 	public void setServicoSelecionado(int servicoSelecionado) {
 		this.servicoSelecionado = servicoSelecionado;
+	}
+
+	public String getEnderecoExtenso() {
+		return enderecoExtenso;
+	}
+
+	public void setEnderecoExtenso(String enderecoExtenso) {
+		this.enderecoExtenso = enderecoExtenso;
 	}
 
 

@@ -27,7 +27,7 @@ public class LoginListener implements PhaseListener {
 		
 		//Validar se o usuário está indo para a tela de 
 		//cadastro de usuario
-		if (pagina.contains("cadastro_prestador")) return;
+		if (pagina.contains("cadastro_cliente")) return;
 		
 		//Recuperar a sessão do usuário
 		HttpSession sessao = (HttpSession) context

@@ -6,14 +6,24 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core">
 
-<f:loadBundle basename="resources.application" var="msg"/>
 
-<head>
-    <title><h:outputText value="#{msg.welcomeTitle}" /></title>
-</head>
+<ui:composition template="/WEB-INF/_template.xhtml">
 
-<body>
-<h3><h:outputText value="#{msg.welcomeHeading}" /></h3>
-<p><h:outputText value="#{msg.welcomeMessage}" /></p>
-</body>
+
+	<ui:define name="content">
+
+<h:head>
+    <title><h:outputText value="Bem Vindos ao Trampamos" /></title>
+</h:head>
+
+<h:body>
+<h3><h:outputText value="Trampamos um aplicativo para conectar você a pessoa que possa executar o serviço que você procura." /></h3>
+<p>
+	<h:outputText value="Procure pelo serviço que deseja pesquisar:" />
+
+</p>
+</h:body>
+</ui:define>
+
+</ui:composition>
 </html>
