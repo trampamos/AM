@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/_template.xhtml">
+	
+ 
+	<ui:define name="content">
+	
+		<h1>Cadastro de Prestador de Serviço</h1>
+		<p:growl autoUpdate="true"/>
+		<h:form id="formulario">
+		<p:panel header="Pesquisa CEP">
+			<h:panelGrid columns="2">
+
+				<p:outputLabel value="CEP" for="cep"/>
+				<p:inputText id="cep"
+					value="#{buscaCepBean.cep}"/>
+					
+
+				<p:commandButton 
+					value="Buscar CEP" 
+					actionListener="#{buscaCepBean.buscar}"
+					update="formulario"/>
+				
+			</h:panelGrid>
+		</p:panel>
+		<c:if test="#{buscaCepBean.endereco != null}">		
+			<p:panel header="Endereco">
+				<h:panelGrid columns="2">
+				
+					<p:outputLabel value="Tipo Logradouro" for="tp"/>
+					<p:inputText id="tp"
+						value="#{buscaCepBean.endereco.tipoLogradouro}"/>
+						
+					<p:outputLabel value="Logradouro" for="log"/>
+					<p:inputText id="log"
+						value="#{buscaCepBean.endereco.logradouro}"/>
+						
+					<p:outputLabel value="Bairro" for="br"/>
+					<p:inputText id="br"
+						value="#{buscaCepBean.endereco.bairro}"/>
+						
+					<p:outputLabel value="Cidade" for="cdd"/>
+					<p:inputText id="cdd"
+						value="#{buscaCepBean.endereco.cidade}"/>
+						
+					<p:outputLabel value="UF" for="uf"/>
+					<p:inputText id="uf"
+						value="#{buscaCepBean.endereco.sigla}"/>
+				</h:panelGrid>
+				
+			</p:panel>
+		</c:if>
+		</h:form>
+	</ui:define>
+	
+</ui:composition>
+</html>
+
+
+
+
+
+

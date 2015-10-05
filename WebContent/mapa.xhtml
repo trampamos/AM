@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:m="http://code.google.com/p/gmaps4jsf/">
+
+<ui:composition template="/WEB-INF/_template.xhtml">
+
+	<ui:define name="content">
+		<h1>Mapa</h1>
+		<script type="text/javascript"
+		src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		
+		<p:gmap center="-23.538694, -46.479888" zoom="15" type="MAP"
+			style="width:100%;height:500px"
+			model="#{mapaBean.marcacoes}"/>
+		
+		<h2>Mapa 2</h2>	
+		<h:form>
+			<p:inputText value="#{mapaBean.endereco}"/>
+			<p:commandButton value="Buscar" update="mapa"/>
+			<m:map id="mapa" address="#{mapaBean.endereco}"
+				zoom="18" width="100%" height="500" partiallyTriggered="true">
+			</m:map>
+		</h:form>
+		
+	</ui:define>
+
+</ui:composition>
+</html>
+
+
+

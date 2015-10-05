@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/_template.xhtml">
+	<ui:define name="content">
+		<h1>Gráfico - Vendas por Forma de Pagamento</h1>
+		
+		<p:tabView>
+			<p:tab title="Gráfico Pizza">		
+				<p:chart type="pie"
+					model="#{relatorioBean.grafico}"/>
+			</p:tab>
+			<p:tab title="Gráfico Linha">
+				<p:chart type="line"
+					model="#{relatorioBean.graficoLinha}"/>	
+				
+				<p:commandButton value="Relatório"
+							onclick="PF('rel').show()"/>	
+				
+				<p:dialog header="Relatório" widgetVar="rel"
+						showEffect="bounce" width="600" hideEffect="explode">
+					<p:chart type="line" 
+						model="#{relatorioBean.graficoLinha}"/>
+				</p:dialog>
+					
+			</p:tab>
+		</p:tabView>
+		
+	</ui:define>	
+</ui:composition>
+</html>
+
+
+
+
+

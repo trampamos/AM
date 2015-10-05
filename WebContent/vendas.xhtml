@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/_template.xhtml">
+	
+	<ui:define name="content">
+		<h1>Cadastro de Venda</h1>
+		<p:growl autoUpdate="true"/>
+		<h:form id="formulario">
+		<p:panel header="Cadastro" toggleable="true" toggleOrientation="vertical">
+			<h:panelGrid columns="2">
+				<p:outputLabel value="CPF" for="cpf"/>
+				<p:inputMask mask="999.999.999-99"
+					id="cpf" value="#{vendaBean.vendaCasada.cpf}"/>
+			
+				<p:outputLabel value="Descrição" for="desc"/>
+				<p:inputText id="desc"
+					value="#{vendaBean.vendaCasada.descricao}"/>
+					
+				<p:outputLabel value="Valor" for="valor"/>
+				<p:inputText id="valor"
+					value="#{vendaBean.vendaCasada.valor}"/>
+					
+				<p:outputLabel value="Item" for="item"/>
+				<p:inputText id="item"
+					value="#{vendaBean.vendaCasada.item}"/>
+					
+				<p:outputLabel value="Data" for="data"/>
+				<p:calendar id="data"
+					value="#{vendaBean.vendaCasada.data.time}"
+					pattern="dd/MM/yyyy"/>
+				
+				<p:outputLabel value="Forma Pagamento"
+					for="forma"/>
+				<p:selectOneMenu id="forma"
+					value="#{vendaBean.vendaCasada.formaPagamento}">
+					<f:selectItem itemValue="Debito" itemLabel="Débito"/>
+					<f:selectItem itemValue="Boleto" itemLabel="Boleto"/>
+					<f:selectItem itemValue="Deposito" itemLabel="Depósito"/>
+				</p:selectOneMenu>	
+				
+				<p:graphicImage id="foto"
+					value="#{vendaBean.foto}"
+					cache="false"
+					width="250"/>
+				<p:fileUpload
+					id="f"
+					fileUploadListener="#{vendaBean.subir}"
+					sizeLimit="10000000"
+					allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+					auto="false"
+					dragDropSupport="false"
+					update="foto"/>	
+					
+				<p:graphicImage id="imagem"
+					value="#{vendaBean.imagem}"
+					cache="false"
+					width="250"/>
+				<p:fileUpload
+					id="f2"
+					fileUploadListener="#{vendaBean.subir2}"
+					sizeLimit="10000000"
+					allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+					auto="false"
+					dragDropSupport="false"
+					update="imagem"/>	
+					
+				<p:outputLabel value="Qualificação" for="q"/>
+				<p:rating id="q" stars="10"
+					value="#{vendaBean.venda.qualificacao}"/>		
+				
+				<p:commandButton 
+					value="#{vendaBean.venda.codigo==0?'Cadastrar':'Editar'}" 
+					actionListener="#{vendaBean.cadastrar}"
+					update="formulario"/>
+				
+			</h:panelGrid>
+		</p:panel>
+		</h:form>
+		<h:form id="lista">
+		<p:panel header="Lista de Vendas" toggleable="true"
+			toggleOrientation="vertical">
+			<h2>Vendas Cadastradas</h2>
+				<h:panelGrid columns="3">
+					<p:outputLabel value="Descrição"/>
+					<p:autoComplete value="#{vendaBean.descBusca}" 
+						completeMethod="#{vendaBean.completar}"/>
+					<p:commandButton value="Buscar"
+						actionListener="#{vendaBean.buscar}"
+						update="lista"/>
+				</h:panelGrid>
+			<p:dataTable value="#{vendaBean.lista}" var="v"
+				paginator="true" rows="5" paginatorPosition="bottom"
+				rowsPerPageTemplate="5,10,15">
+				<p:column sortBy="#{v.descricao}" headerText="Descrição">
+					#{v.descricao}
+				</p:column>
+				<p:column headerText="Valor">
+					#{v.valor}
+				</p:column>
+				<p:column headerText="Forma Pagamento">
+					#{v.formaPagamento}
+				</p:column>
+				<p:column headerText="Data">
+					<h:outputText value="#{v.data.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Qualificação">
+					<p:rating value="#{v.qualificacao}"
+						disabled="true" stars="10"/>
+				</p:column>
+				<p:column>
+					<p:commandButton icon="ui-icon-trash" 
+						onclick="PF('confirm').show()">
+						<f:setPropertyActionListener 
+							value="#{v.codigo}" 
+							target="#{vendaBean.codigo}"/>
+					</p:commandButton>
+					<p:commandButton icon="ui-icon-pencil"
+						update=":formulario">
+						<f:setPropertyActionListener 
+							value="#{v}" 
+							target="#{vendaBean.venda}"/>
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+			<p:confirmDialog widgetVar="confirm" 
+				message="Deseja excluir a venda?"
+				header="Confirmação">
+			
+				<p:commandButton value="Sim" 
+					oncomplete="PF('confirm').hide()"
+					action="#{vendaBean.excluir}"
+					update="lista"/>
+					
+				<p:commandButton value="Não"
+					onclick="PF('confirm').hide()"/>	
+			
+			</p:confirmDialog>
+			</p:panel>
+		</h:form>
+	</ui:define>
+	
+</ui:composition>
+</html>
+
+
+
+
+
+

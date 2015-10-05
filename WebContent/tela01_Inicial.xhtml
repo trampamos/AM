@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+
+<f:loadBundle basename="resources.application" var="msg"/>
+
+
+	<h:head>
+		<title>Hello World - Input Form</title>
+	</h:head>
+	
+	<h:body>
+		<h:form>
+			<h:inputText id="name" value="#{theUserName}" />
+			<br/><br/>
+			<h:commandButton value="EsteSeraAutomatico" action="tela02_BoasVindas"/>
+		</h:form>
+	</h:body>
+
+</html>

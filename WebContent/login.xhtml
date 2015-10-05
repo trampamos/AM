@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+	<h1>Bem Vindo ao Trampamos</h1>
+	<h:form>
+		<p:messages autoUpdate="true"/>
+		<h:panelGrid columns="2">
+			<p:outputLabel value="Login" for="log"/>
+			<p:inputText value="#{loginBean.login}" id="log"/>
+			
+			<p:outputLabel value="Senha" for="pass"/>
+			<p:password value="#{loginBean.senha}" id="pass"/>
+			
+			<p:commandButton value="Entrar" 
+				action="#{loginBean.logar}"/>
+		</h:panelGrid>
+<br/>
+<br/>
+<p:link value="Cadastro de cliente" outcome="cadastro_cliente" />
+	</h:form>
+	
+<br/>
+<!-- <h:link value="Cadastro de prestador de serviço" outcome="cadastro_prestador" /> -->
+</h:body>
+
+</html>
+
+

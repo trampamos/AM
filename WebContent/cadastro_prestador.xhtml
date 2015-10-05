@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/_template.xhtml">
+
+
+	<ui:define name="content">
+
+		<h1>Cadastro de Prestador de Serviço</h1>
+		<p:growl autoUpdate="true" />
+		<h:form id="formulario">
+			<p:panel header="Pesquisa CEP">
+				<h:panelGrid columns="2">
+					<p:panel>
+						<p:outputLabel value="Nome" for="nome" />
+
+					</p:panel>
+					<p:inputText id="nome" value="#{prestadorBean.prestador.nome}" />
+					<p:panel>
+						<p:outputLabel value="Sobrenome" for="sobrenome" />
+
+					</p:panel>
+					<p:inputText id="sobrenome"
+						value="#{prestadorBean.prestador.sobrenome}" />
+					<p:panel>
+						<p:outputLabel value="Email" for="email" />
+
+					</p:panel>
+					<p:inputText id="email" value="#{prestadorBean.prestador.email}" />
+					
+					<p:panel>
+						<p:outputLabel value="Número" for="numero" />
+					</p:panel>
+					<p:inputText id="numero" value="#{prestadorBean.prestador.numero}" />
+
+					<p:panel>
+						<p:outputLabel value="Complemento" for="complemento" />
+
+					</p:panel>
+					<p:inputText id="complemento"
+						value="#{prestadorBean.prestador.complemento}" />
+						
+					<p:panel>
+						<p:outputLabel value="Servico" />
+
+					</p:panel>
+					<h:selectOneMenu value="#{prestadorBean.servicoSelecionado}" >
+						<f:selectItems value="#{prestadorBean.todosServicos()}"
+							var="service"
+							itemLabel="#{service.dsServico}"
+							itemValue="#{service.cdSevico}"
+						/>					
+					</h:selectOneMenu>
+
+					<p:panel>
+						<p:outputLabel value="Login" for="login" />
+
+					</p:panel>
+					<p:inputText id="login"
+						value="#{prestadorBean.login.login}" />
+						
+					<p:panel>
+						<p:outputLabel value="Senha" for="senha" />
+
+					</p:panel>
+					<p:inputText id="senha"
+						value="#{prestadorBean.login.senha}" />
+					
+					
+					<p:panel>
+						<p:outputLabel value="CEP" for="cep" />
+						<p:inputText id="cep" value="#{prestadorBean.cep}" size="8" />
+					</p:panel>
+					<h:inputHidden value="#{prestadorBean.endereco.cd}" id="cd" />
+					<p:panel>
+						<p:commandButton value="Buscar CEP"
+							actionListener="#{prestadorBean.buscar}" update="formulario" />
+						<p:commandButton value="Cadastrar"
+							actionListener="#{prestadorBean.cadastrar}" update="formulario" />
+
+					</p:panel>
+				</h:panelGrid>
+				<c:if test="#{prestadorBean.endereco != null}">
+					<p:panel header="Endereco">
+						<h:panelGrid columns="2">
+
+							<p:outputLabel value="Tipo Logradouro" for="tp" />
+							<p:inputText id="tp"
+								value="#{prestadorBean.endereco.tipoLogradouro}" />
+
+							<p:outputLabel value="Logradouro" for="log" />
+							<p:inputText id="log" value="#{prestadorBean.endereco.logradouro}" />
+
+							<p:outputLabel value="Bairro" for="br" />
+							<p:inputText id="br" value="#{prestadorBean.endereco.bairro}" />
+
+							<p:outputLabel value="Cidade" for="cdd" />
+							<p:inputText id="cdd" value="#{prestadorBean.endereco.cidade}" />
+
+							<p:outputLabel value="UF" for="uf" />
+							<p:inputText id="uf" value="#{prestadorBean.endereco.sigla}" />
+						</h:panelGrid>
+
+					</p:panel>
+				</c:if>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>
+
+
+
+
+
+

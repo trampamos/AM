@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/WEB-INF/_template.xhtml">
+	<ui:define name="header">
+	    Add your header here or delete to use the default
+	    <h:head>
+				<title>TELA04 - PRINCIPAL</title>
+			</h:head>
+	</ui:define>
+	<ui:define name="content">
+	 <head>
+	
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    
+    <!-- Configuração do estilo -->
+    <style type="text/css">
+      html { height: 50% }
+      body { height: 50%; margin: 0; padding: 0 }
+      .wrap { max-width: 75em; min-height: 40em; height:50%; width:50%; margin: 0 auto; padding-top: 2.5%;}
+      #map-canvas { height: 90%; }
+    </style>
+    
+    <!-- Script que carrega a API do Google Maps -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true">
+    </script>
+    
+    <!-- Função de JavaScript que configura as opcoes básicas da API do Google Maps -->
+    <script type="text/javascript">
+      var map;
+      var centerPos = new google.maps.LatLng(-23.5503836,-46.6339538);
+      var zoomLevel = 10;
+      function initialize() {
+        var mapOptions = {center: centerPos,zoom: zoomLevel};
+        map = new google.maps.Map( document.getElementById("map-canvas"), mapOptions );
+        var locations = [
+                         ['First Shoppe', -23.550014, -46.6341519],
+                         ['Second Shoppe', -23.550390, -46.6343925],
+                         ['Third Shoppe', -23.550390, -46.6343927],
+                         ['Fourth Shoppe', -23.550346, -46.6359864],
+                         ['Fifth Shoppe', -23.550346, -46.6359868],
+                         ['Sixth Shoppe', -23.550828, -46.6352361],
+                         ['Seventh Shoppe',-23.550609, -46.6354264],
+                         ['Eighth Shoppe',-23.551098, -46.635807],
+                         ['Ninth Shoppe',-23.551164, -46.635718],
+                         ['Tenth Shoppe',-23.550830, -46.635275]
+                       ];
+
+                       for (i = 0; i < locations.length; i++) {  
+                         marker = new google.maps.Marker({
+                       position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                           title: locations[i][0],
+                           map: map
+                         });
+                       }
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+ 
+  </head>
+  
+  <body>
+ 	<div class="wrap">
+    	<div id="map-canvas"></div>
+    </div>
+   </body>
+	</ui:define>
+	<ui:define name="footer">
+	    Add your footer here or delete to use the default
+	</ui:define>
+</ui:composition>
+</html>

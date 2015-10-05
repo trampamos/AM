@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/_template.xhtml">
+	
+	<ui:define name="content">
+		<h1>Cadastro de Cliente</h1>
+		<p:growl autoUpdate="true"/>
+		<h:form id="formulario">
+		<p:panel header="Cadastro" toggleable="true" toggleOrientation="vertical">
+			<h:panelGrid columns="2">
+
+				<p:outputLabel value="Nome" for="nome"/>
+				<p:inputText id="nome"
+					value="#{clienteBean.cliente.nome}"/>
+					
+				<p:outputLabel value="Sobrenome" for="sobrenome"/>
+				<p:inputText id="sobrenome"
+					value="#{clienteBean.cliente.sobrenome}"/>
+					
+				<p:outputLabel value="Email" for="email"/>
+				<p:inputText id="email"
+					value="#{clienteBean.cliente.email}"/>
+			
+				<p:outputLabel value="Login" for="login"/>
+				<p:inputText id="login"
+					value="#{clienteBean.login.login}"/>
+					
+				<p:outputLabel value="Senha" for="senha"/>
+				<p:password id="senha"
+					value="#{clienteBean.login.senha}"/>
+
+				<p:commandButton 
+					value="Cadastrar" 
+					actionListener="#{clienteBean.cadastrar}"
+					update="formulario"/>
+				
+			</h:panelGrid>
+		<br/>
+		<br/>
+		<p:link value="Login" outcome="login"/>
+		</p:panel>
+		</h:form>
+	</ui:define>
+	
+</ui:composition>
+</html>
+
+
+
+
+
+

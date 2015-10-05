@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/_template.xhtml">
+	<ui:define name="content">
+	   
+		<h1>Últimas noticias</h1>
+		
+		<p:feedReader var="item" value="http://globoesporte.globo.com/servico/semantica/editorias/plantao/futebol/times/corinthians/feed.rss">
+			<h:panelGrid column="1" >
+				<h:outputText value="#{item.title}" style="fontweight:bold;"/>
+				<h:outputText value="#{item.description.value}" escape="false"/>
+				<p:separator/>			
+			</h:panelGrid>
+		</p:feedReader>
+	</ui:define>
+</ui:composition>
+</html>
