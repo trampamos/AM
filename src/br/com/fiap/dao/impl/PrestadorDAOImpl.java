@@ -1,5 +1,7 @@
 package br.com.fiap.dao.impl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import br.com.fiap.dao.PrestadorDAO;
@@ -10,7 +12,16 @@ public class PrestadorDAOImpl extends DAOImpl<PrestadorEntity, Integer> implemen
 	public PrestadorDAOImpl(EntityManager em) {
 		super(em);
 		// TODO Auto-generated constructor stub
+				
 	}
+
+	@Override
+	public List<PrestadorEntity> listaServico() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 
 
 }

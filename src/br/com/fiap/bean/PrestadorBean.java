@@ -66,6 +66,12 @@ public class PrestadorBean implements Serializable {
 		return servicos;
 	}
 
+	public void buscarPorServico(){
+		 getServicoSelecionado();
+		 List<PrestadorEntity> lista = dao.
+		
+	}
+	
 	// Clique do botão cadastrar
 	public void cadastrar() {
 		FacesMessage msg;
