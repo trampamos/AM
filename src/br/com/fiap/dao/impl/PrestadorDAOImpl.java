@@ -17,8 +17,7 @@ public class PrestadorDAOImpl extends DAOImpl<PrestadorEntity, Integer> implemen
 
 	@Override
 	public List<PrestadorEntity> listaServico() {
-		// TODO Auto-generated method stub
-		return null;
+		return 	em.createQuery("from PrestadorEntity",PrestadorEntity.class).getResultList(); 
 	}
 	
 	
