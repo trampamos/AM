@@ -8,29 +8,31 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:m="http://code.google.com/p/gmaps4jsf/">
 
-<ui:composition template="/WEB-INF/_template.xhtml">
+	<ui:composition template="/WEB-INF/_template.xhtml">
+	
+		<ui:define name="content">
+			
+			<h1>Mapa</h1>
+			<script type="text/javascript"
+			src="http://maps.google.com/maps/api/js?sensor=false"></script>
+			
+			<p:gmap center="-23.538694, -46.479888" zoom="15" type="MAP"
+				style="width:100%;height:500px"
+				model="#{mapaBean.marcacoes}"/>
+			
+			<h2>Mapa 2</h2>	
+			<h:form>
+				<p:inputText value="#{mapaBean.endereco}"/>
+				<p:commandButton value="Buscar" update="mapa"/>
+				<m:map id="mapa" address="#{mapaBean.endereco}"
+					zoom="18" width="100%" height="500" partiallyTriggered="true">
+				</m:map>
+			</h:form>
+			
+		</ui:define>
+	
+	</ui:composition>
 
-	<ui:define name="content">
-		<h1>Mapa</h1>
-		<script type="text/javascript"
-		src="http://maps.google.com/maps/api/js?sensor=false"></script>
-		
-		<p:gmap center="-23.538694, -46.479888" zoom="15" type="MAP"
-			style="width:100%;height:500px"
-			model="#{mapaBean.marcacoes}"/>
-		
-		<h2>Mapa 2</h2>	
-		<h:form>
-			<p:inputText value="#{mapaBean.endereco}"/>
-			<p:commandButton value="Buscar" update="mapa"/>
-			<m:map id="mapa" address="#{mapaBean.endereco}"
-				zoom="18" width="100%" height="500" partiallyTriggered="true">
-			</m:map>
-		</h:form>
-		
-	</ui:define>
-
-</ui:composition>
 </html>
 
 

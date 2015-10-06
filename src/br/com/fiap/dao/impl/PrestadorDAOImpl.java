@@ -19,7 +19,7 @@ public class PrestadorDAOImpl extends DAOImpl<PrestadorEntity, Integer> implemen
 	public List<PrestadorEntity> listaServico() {
 		return 	em.createQuery("from PrestadorEntity",PrestadorEntity.class).getResultList(); 
 	}
-	
+		
 	
 
 
