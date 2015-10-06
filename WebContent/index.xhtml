@@ -20,7 +20,14 @@
 <h3><h:outputText value="Trampamos um aplicativo para conectar você a pessoa que possa executar o serviço que você procura." /></h3>
 <p>
 	<h:outputText value="Procure pelo serviço que deseja pesquisar:" />
-
+	<!--<h:inputText value="#{prestadorBean.enderecoExtenso}"/>-->
+	<h:selectOneMenu value="#{prestadorBean.servicoSelecionado}" >
+						<f:selectItems value="#{prestadorBean.todosServicos()}"
+							var="service"
+							itemLabel="#{service.dsServico}"
+							itemValue="#{service.cdSevico}"
+						/>					
+					</h:selectOneMenu>
 </p>
 </h:body>
 </ui:define>

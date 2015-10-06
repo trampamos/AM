@@ -125,7 +125,6 @@ public class PrestadorBean implements Serializable {
 			sigla = (String) query2.getOutputParameterValue("P_NM_SIGLA");
 			cd = (Integer) query2.getOutputParameterValue("P_CD_LOG");
 			
-			this.setEnderecoExtenso(tp+" "+log+" "+bairro);
 			endereco.setTipoLogradouro(tp);
 			endereco.setLogradouro(log);
 			endereco.setBairro(bairro);
