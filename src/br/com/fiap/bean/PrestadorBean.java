@@ -41,6 +41,7 @@ public class PrestadorBean implements Serializable {
 	private ServicoBO servicoBO;
 	private int servicoSelecionado;
 	private String enderecoExtenso;
+	private List<PrestadorEntity> listaServico;
 	
 	
 
@@ -69,11 +70,13 @@ public class PrestadorBean implements Serializable {
 	public void buscarPorServico(){
 		 ///getServicoSelecionado();
 		 List<PrestadorEntity> lista = dao.listaServico();
-		 List<PrestadorEntity> listaServico = new ArrayList<PrestadorEntity>();
+		 setListaServico(new ArrayList<PrestadorEntity>());
 		 for (PrestadorEntity prestador : lista) {
-			if(prestador.getCodigoLogradouro() == getServicoSelecionado()){
+			if(prestador.getCodigoServico() == getServicoSelecionado()){
 				listaServico.add(prestador);
-			}
+				
+				System.out.println(getServicoSelecionado());			
+				}
 		}
 		
 	}
@@ -189,6 +192,14 @@ public class PrestadorBean implements Serializable {
 
 	public void setEnderecoExtenso(String enderecoExtenso) {
 		this.enderecoExtenso = enderecoExtenso;
+	}
+
+	public List<PrestadorEntity> getListaServico() {
+		return listaServico;
+	}
+
+	public void setListaServico(List<PrestadorEntity> listaServico) {
+		this.listaServico = listaServico;
 	}
 
 

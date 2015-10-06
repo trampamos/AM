@@ -2,67 +2,28 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:m="http://code.google.com/p/gmaps4jsf/">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:m="http://code.google.com/p/gmaps4jsf/">
 
 
-	<ui:composition template="/WEB-INF/_template.xhtml">
-		<ui:define name="content">
-			<h:head>
-				<title><h:outputText value="Bem Vindos ao Trampamos" /></title>
-			</h:head>
-			<h:body>
-				<h3>
-					<h:outputText
-						value="Trampamos um aplicativo para conectar você a pessoa que possa executar o serviço que você procura." />
-				</h3>
-					<h:form>
-						<p:layout style="min-width:400px;min-height:300px;">
-	   					 	<p:layoutUnit position="west" resizable="true" size="200" minSize="100" maxSize="300">
-	        				<h:form> 
-							    <p:dataScroller value="#{dataScrollerView.cars}" var="car" chunkSize="10">
-							        <f:facet name="header">
-							            Lista de Prestadores
-							        </f:facet>
-							 
-							        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-							            <p:graphicImage name="demo/images/car/#{car.brand}-big.gif" /> 
-							 
-							            <p:outputPanel>
-							                <h:panelGrid columns="2" cellpadding="5">
-							                    <h:outputText value="Id:" />
-							                    <h:outputText value="#{car.id}" style="font-weight: bold"/>
-							 
-							                    <h:outputText value="Year:" />
-							                    <h:outputText value="#{car.year}" style="font-weight: bold"/>
-							 
-							                    <h:outputText value="Color:" />
-							                    <h:outputText value="#{car.color}" style="font-weight: bold"/>
-							                </h:panelGrid>
-							            </p:outputPanel>
-							        </h:panelGrid>
-							    </p:dataScroller>
-							</h:form>        				
-	    					</p:layoutUnit>
-	 
-						    <p:layoutUnit position="center">
-							    <h:form>
-									<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-									<p:inputText value="#{mapaBean.endereco}"/>
-									<p:commandButton value="Buscar" update="mapa"/>
-									<m:map id="mapa" address="#{mapaBean.endereco}"
-										zoom="18" width="100%" height="500" partiallyTriggered="true">
-									</m:map>
-								</h:form>
-						    </p:layoutUnit>
-					    </p:layout>
-					    
-					    
-	 
-					
+<ui:composition template="/WEB-INF/_template.xhtml">
+	<ui:define name="content">
+		<h:head>
+			<title><h:outputText value="Bem Vindos ao Trampamos" /></title>
+		</h:head>
+		<h:body>
+			<h3>
+				<h:outputText
+					value="Trampamos um aplicativo para conectar você a pessoa que possa executar o serviço que você procura." />
+			</h3>
+			<h:form>
+				<p:layout style="min-width:400px;min-height:600px;">
+					<p:layoutUnit position="west" resizable="true" size="200"
+						minSize="100" maxSize="300">
+						<h:form id="listaPrestador">
 							<h:outputText value="Selecione o Serviço que você procura:" />
 							<!--<h:inputText value="#{prestadorBean.enderecoExtenso}"/>-->
 							<h:selectOneMenu value="#{prestadorBean.servicoSelecionado}">
@@ -70,9 +31,42 @@
 									var="service" itemLabel="#{service.dsServico}"
 									itemValue="#{service.cdSevico}" />
 							</h:selectOneMenu>
-							<h:commandButton actionListener="#{prestadorBean.buscarPorServico}" value="Buscar"/>
-					</h:form>
-			</h:body>
-		</ui:define>
-	</ui:composition>
+							<h:commandButton
+								actionListener="#{prestadorBean.buscarPorServico}"
+								value="Buscar" update="listaPrestador" />
+								
+							<p:dataTable value="#{prestadorBean.listaServico}" var="p"
+								paginator="true" rows="5" paginatorPosition="bottom"
+								rowsPerPageTemplate="5,10,15">
+								<p:column sortBy="#{p.nome}" headerText="Descrição">
+									#{p.nome}
+								</p:column>
+
+							</p:dataTable>
+
+
+						</h:form>
+					</p:layoutUnit>
+
+					<p:layoutUnit position="center">
+						<h:form>
+							<script type="text/javascript"
+								src="http://maps.google.com/maps/api/js?sensor=false"></script>
+							<p:inputText value="#{mapaBean.endereco}" />
+							<p:commandButton value="Buscar" update="mapa" />
+							<m:map id="mapa" address="#{mapaBean.endereco}" zoom="18"
+								width="100%" height="500" partiallyTriggered="true">
+							</m:map>
+						</h:form>
+					</p:layoutUnit>
+				</p:layout>
+
+
+
+
+
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>
 </html>
