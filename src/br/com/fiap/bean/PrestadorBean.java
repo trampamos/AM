@@ -67,8 +67,14 @@ public class PrestadorBean implements Serializable {
 	}
 
 	public void buscarPorServico(){
-		 getServicoSelecionado();
-		 List<PrestadorEntity> lista = dao.
+		 ///getServicoSelecionado();
+		 List<PrestadorEntity> lista = dao.listaServico();
+		 List<PrestadorEntity> listaServico = new ArrayList<PrestadorEntity>();
+		 for (PrestadorEntity prestador : lista) {
+			if(prestador.getCodigoLogradouro() == getServicoSelecionado()){
+				listaServico.add(prestador);
+			}
+		}
 		
 	}
 	
