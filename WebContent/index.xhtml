@@ -41,7 +41,10 @@
 								<p:column sortBy="#{p.nome}" headerText="Descrição">
 									#{p.nome}
 								</p:column>
-
+								<p:column headerText="Qualificação">
+									<p:rating value="#{p.qualificacao}"
+										disabled="true" stars="10"/>
+								</p:column>
 							</p:dataTable>
 
 

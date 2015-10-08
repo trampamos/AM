@@ -45,6 +45,9 @@ public class PrestadorEntity extends PessoaEntity implements Serializable{
 	@Column(name = "cd_servico")
 	private int codigoServico;
 	
+	@Column(name = "nr_qualificacao")
+	private int qualificacao;
+	
 	
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy = "prestador")
 	private List<ComentarioEntity> comentarios;
@@ -89,6 +92,14 @@ public class PrestadorEntity extends PessoaEntity implements Serializable{
 
 	public void setCodigoServico(int codigoServico) {
 		this.codigoServico = codigoServico;
+	}
+
+	public int getQualificacao() {
+		return qualificacao;
+	}
+
+	public void setQualificacao(int qualificacao) {
+		this.qualificacao = qualificacao;
 	}
 
 

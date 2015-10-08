@@ -42,7 +42,9 @@ public class PessoaEntity implements Serializable{
 	@Column(name = "ds_email", nullable = true,length = 100)
 	private String email;
 
-
+	@Column(name = "cd_telefone")
+	private int codigoTelefone; 
+	
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name = "cd_login")
 	private LoginEntity login;
